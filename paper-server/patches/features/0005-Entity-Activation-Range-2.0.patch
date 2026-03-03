@@ -540,10 +540,10 @@ index 5b6020de0848458f5576113e690b5a6435f35d05..6f49b5e5888a6296b929e465a5ef87dc
      public void tick() {
          super.tick();
 diff --git a/net/minecraft/world/entity/Mob.java b/net/minecraft/world/entity/Mob.java
-index 800c7e5dd95a946e47aa43eeda0712d745b17914..4d1c20d598a65033fd118a02bd622745fe286156 100644
+index 11865e94b02b8d7b39a913356d5d94c949c99030..2e98c2f0a1e90379fadca796bc5112d2c7cdbecd 100644
 --- a/net/minecraft/world/entity/Mob.java
 +++ b/net/minecraft/world/entity/Mob.java
-@@ -218,6 +218,19 @@ public abstract class Mob extends LivingEntity implements EquipmentUser, Leashab
+@@ -219,6 +219,19 @@ public abstract class Mob extends LivingEntity implements EquipmentUser, Leashab
          return this.lookControl;
      }
  
