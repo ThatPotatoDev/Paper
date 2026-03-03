@@ -99,11 +99,6 @@ public class CraftZombie extends CraftMonster implements Zombie {
     }
 
     @Override
-    public boolean shouldBurnInDay() {
-        return getHandle().isSunSensitive();
-    }
-
-    @Override
     public boolean isArmsRaised() {
         return getHandle().isAggressive();
     }

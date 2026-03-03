@@ -18,6 +18,18 @@ import org.jspecify.annotations.Nullable;
 public interface Mob extends LivingEntity, Lootable, Leashable {
 
     /**
+     * Check if the entity should burn in daylight
+     *
+     * @return True if the entity should burn in daylight
+     */
+    boolean shouldBurnInDay();
+
+    /**
+     * Sets if the entity should burn in daylight
+     */
+    void setShouldBurnInDay(TriState state);
+
+    /**
      * Check if a mob should be despawned when the world is set to peaceful difficulty.
      * This also takes the {@link Mob#getDespawnInPeacefulOverride()} into account.
      *

@@ -4,6 +4,7 @@ import com.google.common.base.Preconditions;
 import java.util.Optional;
 import net.kyori.adventure.util.TriState;
 import net.minecraft.sounds.SoundEvent;
+import net.minecraft.tags.EntityTypeTags;
 import org.bukkit.Sound;
 import org.bukkit.craftbukkit.CraftLootTable;
 import org.bukkit.craftbukkit.CraftServer;
@@ -199,5 +200,13 @@ public abstract class CraftMob extends CraftLivingEntity implements Mob, io.pape
     @Override
     public boolean setLeashHolder(final org.bukkit.entity.Entity holder) {
         return io.papermc.paper.entity.PaperLeashable.super.setLeashHolder(holder);
+    }
+
+    public boolean shouldBurnInDay() {
+        return this.getHandle().shouldBurnInDay();
+    }
+    public void setShouldBurnInDay(net.kyori.adventure.util.TriState state) {
+        Preconditions.checkArgument(state != null, "TriState cannot be null");
+        this.getHandle().setShouldBurnInDay(state);
     }
 }

@@ -23,12 +23,13 @@
      public GoalSelector targetSelector;
      private @Nullable LivingEntity target;
      private final Sensing sensing;
-@@ -139,6 +_,8 @@
+@@ -139,6 +_,9 @@
      private Leashable.@Nullable LeashData leashData;
      private BlockPos homePosition = BlockPos.ZERO;
      private int homeRadius = -1;
 +    public boolean aware = true; // CraftBukkit
 +    public net.kyori.adventure.util.TriState despawnInPeacefulOverride = net.kyori.adventure.util.TriState.NOT_SET; // Paper - allow changing despawnInPeaceful
++    private net.kyori.adventure.util.TriState shouldBurnInDay = net.kyori.adventure.util.TriState.NOT_SET; // Paper - Add more Zombie API
  
      protected Mob(EntityType<? extends Mob> type, Level level) {
          super(type, level);
@@ -129,6 +130,27 @@
      }
  
      @Override
+@@ -434,10 +_,19 @@
+         this.resetAngularLeashMomentum();
+     }
+ 
++    // Paper start - Add more Zombie API
++    public boolean shouldBurnInDay() {
++        return this.shouldBurnInDay.toBooleanOrElse(this.getType().is(EntityTypeTags.BURN_IN_DAYLIGHT));
++    }
++    public void setShouldBurnInDay(net.kyori.adventure.util.TriState shouldBurnInDay) {
++        this.shouldBurnInDay = shouldBurnInDay;
++    }
++    // Paper end - Add more Zombie API
++
+     @Override
+     public void aiStep() {
+         super.aiStep();
+-        if (this.getType().is(EntityTypeTags.BURN_IN_DAYLIGHT)) {
++        if (this.shouldBurnInDay()) { // Paper - Add more Zombie API
+             this.burnUndead();
+         }
+ 
 @@ -456,6 +_,11 @@
                      && !itemEntity.getItem().isEmpty()
                      && !itemEntity.hasPickUpDelay()

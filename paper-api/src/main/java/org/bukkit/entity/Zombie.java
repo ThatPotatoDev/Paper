@@ -1,5 +1,6 @@
 package org.bukkit.entity;
 
+import net.kyori.adventure.util.TriState;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.Nullable;
 
@@ -149,18 +150,14 @@ public interface Zombie extends Monster, Ageable {
     @Deprecated
     boolean isArmsRaised();
 
-    /**
-     * Check if this zombie will burn in the sunlight
-     *
-     * @return True if zombie will burn in sunlight
-     */
-    boolean shouldBurnInDay();
 
     /**
      * Set if this zombie should burn in the sunlight
      *
      * @param shouldBurnInDay True to burn in sunlight
+     * @deprecated use {@link Mob#setShouldBurnInDay(TriState)}
      */
+    @Deprecated
     void setShouldBurnInDay(boolean shouldBurnInDay);
 
     /**

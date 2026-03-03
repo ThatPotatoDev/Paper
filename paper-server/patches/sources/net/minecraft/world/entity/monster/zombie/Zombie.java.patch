@@ -90,7 +90,7 @@
      public void startUnderWaterConversion(int conversionTime) {
          this.conversionTime = conversionTime;
          this.getEntityData().set(DATA_DROWNED_CONVERSION_ID, true);
-@@ -240,31 +_,50 @@
+@@ -240,31 +_,51 @@
      }
  
      protected void convertToZombieType(ServerLevel level, EntityType<? extends Zombie> entityType) {
@@ -135,18 +135,19 @@
 +        return zombieVillager;
 +        // CraftBukkit end
      }
++
  
      public boolean isSunSensitive() {
 -        return true;
 -    }
-+        return this.shouldBurnInDay; // Paper - Add more Zombie API
++        return super.shouldBurnInDay(); // Paper - Add more Zombie API
 +    }
 +
-+    // Paper start - Add more Zombie API
++    // Paper start - Fix should burn in day API
 +    public void setShouldBurnInDay(boolean shouldBurnInDay) {
-+        this.shouldBurnInDay = shouldBurnInDay;
++        super.setShouldBurnInDay(net.kyori.adventure.util.TriState.byBoolean(shouldBurnInDay));
 +    }
-+    // Paper end - Add more Zombie API
++    // Paper end - Fix should burn in day API
  
      @Override
      public boolean hurtServer(ServerLevel level, DamageSource damageSource, float amount) {
